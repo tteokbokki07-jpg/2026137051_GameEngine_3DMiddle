@@ -1,90 +1,51 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public int maxHp = 3;
-    public int currentHp;
+    public int maxHP = 3;
+    public int currentHP;
     public Slider hpSlider; //ui 표시 슬라이더
-    public static int killCount;
-    public float invincibleTime = 0f;   // 플레이어는 0.5
-    float lastHitTime = -999f;
-    public GameObject dropPrefab;     // 적만 연결
-    public float dropChance = 0.3f;   // 30%
-    public GameObject hitEffect;
 
     void Start()
     {
-        currentHp = maxHp;
+        currentHP = maxHP;
         UpdateBar();
+    }
+
+    void Update()
+    {
+        
     }
 
     public void TakeDamage(int damage)
     {
-        if (currentHp <= 0) return;
-        if (Time.time < lastHitTime + invincibleTime) return;
-        lastHitTime = Time.time;
+        if (currentHP <= 0) return;
 
-        currentHp -= damage;
-        Debug.Log(name + " HP: " + currentHp);
+        currentHP -= damage;
+        Debug.Log("name" + name + " HP: " + currentHP);
         UpdateBar();
-        Vector3 hitPos = transform.position + Vector3.up;
-        if (hitEffect != null)
-            Instantiate(hitEffect, hitPos, Quaternion.identity);
 
-
-        if (currentHp <= 0) Die();
-        else Blink();
+        if (currentHP <= 0) Die();
     }
-
 
     void UpdateBar()
     {
         if (hpSlider != null)
-            hpSlider.value = (float)currentHp / maxHp;
+            hpSlider.value = (float)currentHP / maxHP;
     }
 
     void Die()
     {
-        if (CompareTag("Player"))
+        if (CompareTag("player"))
         {
-            GameManager.Instance.GameOver();
+            Debug.Log("Player Died");
+            Time.timeScale = 0f;
         }
         else
         {
-            killCount++;
             Debug.Log(name + " Died");
-            if (dropPrefab != null && Random.value < dropChance)
-            {
-                Vector3 pos = transform.position + Vector3.up * 0.5f;
-                Instantiate(dropPrefab, pos, Quaternion.identity);
-            }
-
             Destroy(gameObject);
         }
     }
-    public void Heal(int amount)
-    {
-        currentHp = Mathf.Min(currentHp + amount, maxHp);
-        UpdateBar();
-    }
-
-    void Blink()
-    {
-        SetVisible(false);
-        Invoke(nameof(ShowAgain), 0.1f);
-    }
-
-    void ShowAgain()
-    {
-        SetVisible(true);
-    }
-
-    void SetVisible(bool on)
-    {
-        foreach (Renderer r in GetComponentsInChildren<Renderer>())
-            r.enabled = on;
-    }
-
 }

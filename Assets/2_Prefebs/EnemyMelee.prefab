@@ -55,7 +55,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2, y: 2.5, z: 2}
-  m_Center: {x: 0, y: 0.3, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!114 &4744735536299792585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,13 +85,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4089395f56b674280d3cd8fca27336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  maxHp: 3
-  currentHp: 0
+  maxHP: 5
+  currentHP: 0
   hpSlider: {fileID: 0}
-  invincibleTime: 0
-  dropPrefab: {fileID: 7266757807004677849, guid: 9628c83ab0df1454db837ebe36f06751, type: 3}
-  dropChance: 0.3
-  hitEffect: {fileID: 5686452347359255664, guid: 7b11fae7c2f53fa4ba3ee8086b50c36e, type: 3}
 --- !u!1001 &7718150182302534743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -106,7 +102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b0faf86c20883214fbd860bd129ec944, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b0faf86c20883214fbd860bd129ec944, type: 3}
       propertyPath: m_LocalPosition.z

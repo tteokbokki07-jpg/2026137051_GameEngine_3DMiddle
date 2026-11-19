@@ -39,6 +39,15 @@ public class Lesson09 : MonoBehaviour
         Debug.Log(hp);
     }
 }
+// /나누기 %나머지
+// float > int = (소수점 버림)
+// && 둘다 참이어야 참
+// || 하나만 참이어도 참
+
+//while
+
+//continue - 건너뛰기
+//break 가장 가까운 반복문 종료
 
 //1.11
 //A class
